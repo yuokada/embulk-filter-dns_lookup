@@ -1,0 +1,20 @@
+in:
+ type: file
+ path_prefix: example/demo.csv
+ parser:
+   type: csv
+   charset: UTF-8
+   newline: CRLF
+   null_string: 'NULL'
+   skip_header_lines: 0
+   comment_line_marker: '#'
+   columns:
+    - {name: ipaddress,     type: string}
+
+filters:
+  - type: dns_lookup
+    columns:
+      - ipaddress
+
+out:
+  type: stdout
